@@ -1,41 +1,115 @@
-<h1>New Event</h1>
+<div class="">
 
-<br/>
+  <div class="flex flex-col max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
 
-<%= form_with model: @event do |form| %>
-  <div>
-    <%= form.label :title, 'Titre' %><br>
-    <%= form.text_field :title, required: true %>
-    <% @event.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+    <!-- title -->
+    <div class="self-center mb-2 text-xl font-light text-gray-800 sm:text-2xl dark:text-white">
+      Créer un évènement
+    </div>
+
+    <!-- form -->
+    <div class="p-6 mt-8">
+
+      <!-- form nav buttons -->
+      <div>
+        <% if @enable_start_at_time %>
+        <h1> <%= link_to "Désactiver l'horaire", new_event_path() %> </h1>
+        <% else %>
+        <h1> <%= link_to "Activer un horaire", new_event_path(enable_start_at_time: true) %> </h1>
+        <% end %>
+      </div>
+
+      <!-- title input -->
+      <div class="mt-8">
+        <%= form_with model: @event do |form| %>
+        <div>
+          <%= form.text_field :title, class: 'rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent', placeholder: 'Titre*', required: true %>
+          <% @event.errors.full_messages_for(:title).each do |message| %>
+          <div><%= message %></div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- description input -->
+      <div class="mt-8">
+        <%= form.text_area :description, class: 'flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent', placeholder: 'Description' %>
+        <% @event.errors.full_messages_for(:description).each do |message| %>
+        <div><%= message %></div>
+        <% end %>
+      </div>
+
+      <!-- start_at_date input -->
+      <div class="mt-8">
+        <label for="event_start_at_date_3i" class="text-gray-700">
+          Date
+        </label>
+        <div class="flex gap-2">
+
+          <!-- day -->
+          <select id="event_start_at_date_3i" name="event[start_at_date(3i)]" class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+            <% current_day = Time.new.day %>
+            <% number_of_days = Date.today.all_month.count %>
+            <% (1..number_of_days).to_a.each do |day| %>
+              <option value="<%= day %>" <%= 'selected=selected' if day == current_day %> >
+                <%= day %>
+              </option>
+            <% end %>
+          </select>
+
+          <!-- month -->
+          <select id="event_start_at_date_2i" name="event[start_at_date(2i)]" class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+            <option value="1">Janvier</option>
+            <option value="2">Février</option>
+            <option value="3">Mars</option>
+            <option value="4">Avril</option>
+            <option value="5">Mai</option>
+            <option value="6">Juin</option>
+            <option value="7" selected="selected">Juillet</option>
+            <option value="8">Aout</option>
+            <option value="9">Septembre</option>
+            <option value="10">Octobre</option>
+            <option value="11">Novembre</option>
+            <option value="12">Decembre</option>
+          </select>
+
+          <!-- year -->
+          <select id="event_start_at_date_1i" name="event[start_at_date(1i)]" class="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+            <option value="2022" selected="selected">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+          </select>
+
+          <% @event.errors.full_messages_for(:start_at_date).each do |message| %>
+          <div><%= message %></div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- start_at_time input -->
+      <div class="mt-8">
+        <% if @enable_start_at_time %>
+        <%= form.label :start_at_time, 'Heure' %><br>
+        <%= form.time_select :start_at_time, {minute_step: 15} %>
+        <% @event.errors.full_messages_for(:start_at_time).each do |message| %>
+        <div><%= message %></div>
+        <% end %>
+      </div>
+      <%= hidden_field(:event, :enable_start_at_time, :value => true) %>
+      <% else %>
+      <% end %>
+
+      <!-- submit -->
+      <div class="flex w-full my-4">
+        <%= form.submit value: "Créer", class: 'py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg' %>
+      </div>
+
+      <% end %>
+
+    </div>
   </div>
 
-  <div>
-    <%= form.label :description, 'Description' %><br>
-    <%= form.text_area :description %>
-    <% @event.errors.full_messages_for(:description).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
 
-  <div>
-    <%= form.label :start_at_date, 'Date' %><br>
-    <%= form.date_select :start_at_date %>
-    <% @event.errors.full_messages_for(:start_at_date).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div>
-    <%= form.label :start_at_time, 'Heure' %><br>
-    <%= form.time_select :start_at_time %>
-    <% @event.errors.full_messages_for(:start_at_time).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
