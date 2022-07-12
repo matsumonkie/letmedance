@@ -17,19 +17,21 @@ class EventsController < ApplicationController
   end
 
   def new
-    @enable_start_at_time = params[:enable_start_at_time]
-    @event = Event.new()
+    @event = Event.new(start_at_time: params[:start_at_time])
   end
 
   def create
     start_at_date = Date.new(event_params["start_at_date(1i)"].to_i,
                              event_params["start_at_date(2i)"].to_i,
                              event_params["start_at_date(3i)"].to_i)
-    start_at_time = if params[:event][:enable_start_at_time]
-      "#{event_params['start_at_time(4i)'].to_i}:#{event_params['start_at_time(5i)'].to_i}"
+    hour = event_params['start_at_time(4i)']
+    minute = event_params['start_at_time(5i)']
+    start_at_time = if hour && minute
+      "#{hour.to_i}:#{minute}.to_i"
     else
       nil
     end
+
 
     @event = Event.new(title: event_params[:title],
                        description: event_params[:description],

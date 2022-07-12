@@ -3,7 +3,7 @@ class CreateEvents < ActiveRecord::Migration[7.0]
     create_table :events do |t|
       t.string :title, null: false
       t.text :description
-      t.date :start_at_date, null: false
+      t.date :start_at_date, null: false, index: true
       t.time :start_at_time
       t.string :image
 

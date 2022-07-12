@@ -36,3 +36,4 @@ tmp/
 /.emacs.desktop
 .emacs*
 .emacs*
+db/schema.rb
