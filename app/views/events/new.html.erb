@@ -10,15 +10,6 @@
     <!-- form -->
     <div class="p-6 mt-8">
 
-      <!-- form nav buttons -->
-      <div>
-        <% if @event.start_at_time %>
-        <h1> <%= link_to "Désactiver l'horaire", new_event_path() %> </h1>
-        <% else %>
-        <h1> <%= link_to "Activer un horaire", new_event_path(start_at_time: Time.now) %> </h1>
-        <% end %>
-      </div>
-
       <!-- title input -->
       <div class="mt-8">
         <%= form_with model: @event do |form| %>
@@ -50,9 +41,9 @@
             <% current_day = Time.new.day %>
             <% number_of_days = Date.today.all_month.count %>
             <% (1..number_of_days).to_a.each do |day| %>
-              <option value="<%= day %>" <%= 'selected=selected' if day == current_day %> >
-                <%= day %>
-              </option>
+            <option value="<%= day %>" <%= 'selected=selected' if day == current_day %> >
+              <%= day %>
+            </option>
             <% end %>
           </select>
 
@@ -90,15 +81,42 @@
 
       <!-- start_at_time input -->
       <div class="mt-8">
-        <% if @event.start_at_time %>
-        <%= form.label :start_at_time, 'Heure' %><br>
-        <%= form.time_select :start_at_time, {minute_step: 15} %>
-        <% @event.errors.full_messages_for(:start_at_time).each do |message| %>
-        <div><%= message %></div>
-        <% end %>
+        <div id="toggle_start_at_time">Activer un horaire</div><br>
+        <div id="start_at_time_input" style="display:none">
+          <select id="event[start_at_hour]">
+            <option value="00">00</option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21" selected="selected">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+          </select>
+          : <select id="event[start_at_minute]">
+            <option value="00" selected="selected">00</option>
+            <option value="15">15</option>
+            <option value="30">30</option>
+            <option value="45">45</option>
+          </select>
+        </div>
       </div>
-      <% else %>
-      <% end %>
 
       <!-- submit -->
       <div class="flex w-full my-4">
@@ -112,3 +130,28 @@
 
 
 </div>
+
+<%= javascript_tag do %>
+
+// toggle start at time
+document.getElementById('toggle_start_at_time').onclick = function() {
+
+  var hour   = document.getElementById('event[start_at_hour]');
+  var minute = document.getElementById('event[start_at_minute]');
+  var startAtTimeInput = document.getElementById('start_at_time_input');
+  var toggleBtn = document.getElementById('toggle_start_at_time');
+
+  if (hour.hasAttribute('name')) {
+    hour.removeAttribute('name');
+    minute.removeAttribute('name');
+    startAtTimeInput.style.display = 'none';
+    toggleBtn.innerHTML = "Activer un horaire";
+  } else {
+    hour.setAttribute('name', 'event[start_at_hour]');
+    minute.setAttribute('name', 'event[start_at_minute]');
+    startAtTimeInput.style.display = '';
+    toggleBtn.innerHTML = "Désactiver l'horaire";
+  }
+};
+
+<% end %>
