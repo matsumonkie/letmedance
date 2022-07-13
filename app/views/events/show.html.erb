@@ -9,8 +9,8 @@
     <div class="hidden lg:block bg-gray-50 absolute top-0 bottom-0 left-3/4 w-screen"></div>
     <div class="mx-auto text-base max-w-prose lg:grid lg:grid-cols-2 lg:gap-8 lg:max-w-none">
       <div>
-        <h2 class="text-base text-indigo-600 font-semibold tracking-wide"><%= @event.title %></h2>
-        <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">Meet Whitney</h3>
+        <h2 class="text-base text-indigo-600 font-semibold tracking-wide"><%= @event.human_start_at_date %></h2>
+        <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"><%= @event.title %></h3>
       </div>
     </div>
     <div class="mt-8 lg:grid lg:grid-cols-2 lg:gap-8">
@@ -43,7 +43,9 @@
           <p class="text-lg text-gray-500">Some introduction whatever</p>
         </div>
         <div class="mt-5 prose prose-indigo text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
-          <%= @event.description %>
+          <% @event.description.split("\n").each do |description| %>
+            <%= description %> <br>
+          <% end %>
         </div>
       </div>
     </div>
