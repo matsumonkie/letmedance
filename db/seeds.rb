@@ -1,3 +1,7 @@
+users = [ User.new(email: "foo@mail.com", password: "foo", role: "superadmin") ]
+users.each(&:save)
+
+
 this_week = Time.now.beginning_of_week + 1.day
 next_week = Time.now.end_of_week + 1.day
 

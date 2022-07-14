@@ -11,6 +11,11 @@
     <%= javascript_importmap_tags %>
   </head>
 
+  <!-- logout link -->
+  <% if user_signed_in? %>
+    <%= link_to "Logout", logout_path, method: "DELETE", data: {"turbo-method": "DELETE"}%>
+  <% end %>
+
   <body class="w-screen h-screen">
     <%= yield %>
   </body>
