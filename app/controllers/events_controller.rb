@@ -35,7 +35,9 @@ class EventsController < ApplicationController
     @event = Event.new(title: event_params[:title],
                        description: event_params[:description],
                        start_at_date: start_at_date,
-                       start_at_time: start_at_time
+                       start_at_time: start_at_time,
+                       location_name: event_params[:location_name],
+                       address: event_params[:address],
                       )
 
     if @event.save
@@ -69,7 +71,13 @@ class EventsController < ApplicationController
   private
 
     def event_params
-      params.require(:event).permit('title', 'description', 'start_at_date', 'start_at_hour', 'start_at_minute')
+      params.require(:event).permit('title',
+                                    'description',
+                                    'start_at_date',
+                                    'start_at_hour',
+                                    'start_at_minute',
+                                    'location_name',
+                                    'address')
     end
 
 end

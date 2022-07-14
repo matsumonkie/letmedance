@@ -83,3 +83,7 @@ fr:
     - :day
     - :month
     - :year
+
+  time:
+    formats:
+      default: "%Hh%M"

@@ -13,7 +13,10 @@ events =
                             "~> Le gros + du WCS : Nous dansons sur des musiques actuelles (R&B, Pop, Blues, Latino...).",
                             "N'hésitez pas à en parler autour de vous 😉"].join("\n"),
               start_at_date: this_week,
-              image: 'l_a_west.png'),
+              start_at_time: Time.now,
+              image: 'l_a_west.png',
+              location_name: 'Le Bal Pop\'',
+              address: '91 route de Vannes, 44000 Nantes'),
 
     Event.new(title: "MyDanceOnWest",
               description: ["Soirée de stage de 21h et jusqu’à 2h.",
@@ -23,7 +26,10 @@ events =
                            "Hâte de vous retrouver💃🏻🕺💃🏻🕺",
                            "Pascale et Jean Pierre 🎼,"].join("\n"),
               start_at_date: this_week + 1.day,
-              image: 'my_dance_on_west.jpg'),
+              start_at_time: Time.now,
+              image: 'my_dance_on_west.jpg',
+              location_name: 'Le Bal Pop\'',
+              address: '91 route de Vannes, 44000 Nantes'),
 
     Event.new(title: "44 Dance Studio",
               description: ["Le 44 Danse Studio Nantes vous propose sa dernière pratique 100% WCS de la saison",
@@ -31,7 +37,10 @@ events =
                            "Soirée ouverte à tous de 21h30 à 1h30",
                            "Studio Nantes Sud,"].join("\n"),
               start_at_date: this_week + 1.day,
-              image: 'connect_and_swing.jpg'),
+              start_at_time: Time.now,
+              image: 'connect_and_swing.jpg',
+              location_name: 'Le Bal Pop\'',
+              address: '91 route de Vannes, 44000 Nantes'),
 
     Event.new(title: "Après-midi dansant West Coast Swing",
               description: ["L’entrée est à 5 euros.",
@@ -39,7 +48,10 @@ events =
                            "Nous prévoyons quelques boissons et petites friandises. Merci d’amener votre gobelet.",
                            "À dimanche"].join("\n"),
               start_at_date: this_week + 3.day,
-              image: 'connect_and_swing.jpg'),
+              start_at_time: Time.now,
+              image: 'connect_and_swing.jpg',
+              location_name: 'Le Bal Pop\'',
+              address: '91 route de Vannes, 44000 Nantes'),
 
     # week 2
     Event.new(title: "Après-midi dansant West Coast Swing",
@@ -48,7 +60,10 @@ events =
                            "Nous prévoyons quelques boissons et petites friandises. Merci d’amener votre gobelet.",
                            "À dimanche"].join("\n"),
               start_at_date: next_week + 3.day,
-              image: 'connect_and_swing.jpg'),
+              start_at_time: Time.now,
+              image: 'connect_and_swing.jpg',
+              location_name: 'Le Bal Pop\'',
+              address: '91 route de Vannes, 44000 Nantes'),
 
     Event.new(title: "44 Dance Studio",
               description: ["Le 44 Danse Studio Nantes vous propose sa dernière pratique 100% WCS de la saison",
@@ -56,7 +71,10 @@ events =
                            "Soirée ouverte à tous de 21h30 à 1h30",
                            "Studio Nantes Sud,"].join("\n"),
               start_at_date: next_week + 4.day,
-              image: 'connect_and_swing.jpg'),
+              start_at_time: Time.now,
+              image: 'connect_and_swing.jpg',
+              location_name: 'Le Bal Pop\'',
+              address: '91 route de Vannes, 44000 Nantes'),
 
     Event.new(title: "MyDanceOnWest",
               description: ["Soirée de stage de 21h et jusqu’à 2h.",
@@ -66,7 +84,10 @@ events =
                            "Hâte de vous retrouver💃🏻🕺💃🏻🕺",
                            "Pascale et Jean Pierre 🎼,"].join("\n"),
               start_at_date: next_week + 5.day,
-              image: 'my_dance_on_west.jpg'),
+              start_at_time: Time.now,
+              image: 'my_dance_on_west.jpg',
+              location_name: 'Le Bal Pop\'',
+              address: '91 route de Vannes, 44000 Nantes')
 
   ]
 
