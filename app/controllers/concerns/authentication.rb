@@ -26,7 +26,7 @@ module Authentication
   end
 
   def user_super_admin?
-    Current.user.role == 'super_admin'
+    user_signed_in? && Current.user.role == 'super_admin'
   end
 
   def current_user

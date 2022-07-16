@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
 
+  before_action :return_404_if_not_super_admin, only: [:edit, :new, :create, :delete]
+
   def index
     @today = Date.today
     @beginning_of_week = @today.at_beginning_of_week
@@ -26,11 +28,12 @@ class EventsController < ApplicationController
                              event_params["start_at_date(3i)"].to_i)
     hour = event_params['start_at_hour']
     minute = event_params['start_at_minute']
-    start_at_time = if hour && minute
-      "#{hour.to_i}:#{minute}.to_i"
-    else
-      nil
-    end
+    start_at_time =
+      if hour && minute
+        "#{hour.to_i}:#{minute}.to_i"
+      else
+        nil
+      end
 
     @event = Event.new(title: event_params[:title],
                        description: event_params[:description],
@@ -71,14 +74,20 @@ class EventsController < ApplicationController
 
   private
 
-    def event_params
-      params.require(:event).permit('title',
-                                    'description',
-                                    'start_at_date',
-                                    'start_at_hour',
-                                    'start_at_minute',
-                                    'location_name',
-                                    'address')
-    end
+  def event_params
+    params.require(:event).permit('title',
+                                  'description',
+                                  'start_at_date',
+                                  'start_at_hour',
+                                  'start_at_minute',
+                                  'location_name',
+                                  'address')
+  end
 
+
+  def return_404_if_not_super_admin
+    if ! user_super_admin?
+      render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
+    end
+  end
 end
