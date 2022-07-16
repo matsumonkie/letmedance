@@ -53,6 +53,12 @@
                   </div>
 
                   <div class="flex shrink items-center">
+                    <!-- edit -->
+                    <% if user_signed_in? && user_super_admin? %>
+                      <%= link_to 'edit', edit_event_path(event) %>
+                    <% end %>
+
+
                     <!-- button show more -->
                     <button>
                       <svg width="20" fill="currentColor" height="20" class="hover:text-gray-800 text-gray-500" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">

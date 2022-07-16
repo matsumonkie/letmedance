@@ -8,6 +8,7 @@ class CreateEvents < ActiveRecord::Migration[7.0]
       t.string :location_name
       t.string :address
       t.string :image
+      t.date :deleted_at, index: true
 
       t.timestamps
     end

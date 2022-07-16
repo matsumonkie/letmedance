@@ -5,6 +5,7 @@ module Authentication
     before_action :set_current_user
     helper_method :current_user
     helper_method :user_signed_in?
+    helper_method :user_super_admin?
   end
 
   def login(user)
@@ -22,6 +23,10 @@ module Authentication
 
   def user_signed_in?
     Current.user && Current.user.present?
+  end
+
+  def user_super_admin?
+    Current.user.role == 'super_admin'
   end
 
   def current_user

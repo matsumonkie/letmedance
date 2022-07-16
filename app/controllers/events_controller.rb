@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     @days_of_week = (@beginning_of_week..@end_of_week).to_a
 
     @ungrouped_events = Event
-                          .where(start_at_date: @beginning_of_week..@end_of_week)
+                          .where(start_at_date: @beginning_of_week..@end_of_week, deleted_at: nil)
                           .order(:start_at_date, :start_at_time)
     @events_by_date = @ungrouped_events.group_by(&:start_at_date)
   end
@@ -63,7 +63,8 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
-    @event.destroy
+    @event.deleted_at(Time.now)
+    @event.save
 
     redirect_to root_path, status: :see_other
   end

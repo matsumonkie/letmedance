@@ -1,4 +1,6 @@
-users = [ User.new(email: "foo@mail.com", password: "foo", role: "superadmin") ]
+users = [ User.new(email: "super_admin@mail.com", password: "foo", role: "super_admin"),
+          User.new(email: "guest@mail.com", password: "foo", role: "guest"),
+        ]
 users.each(&:save)
 
 

@@ -1,21 +1,39 @@
-<h1>Edit Event</h1>
+<div class="flex flex-col max-w-4xl items-center mx-auto h-auto">
 
+  <div class="max-w-md px-4 py-8 bg-white rounded-lg shadow sm:px-6 md:px-8 lg:px-10">
 
-<%= form_with model: @event do |form| %>
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-    <% @event.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+    <!-- title -->
+    <div class="self-center mb-2 text-xl font-light text-gray-800 sm:text-2xl dark:text-white">
+      Modifier un évènement
+    </div>
+
+    <%= render partial: 'new_edit_form', locals: { event: @event, submit_button_text: 'Modifier' } %>
   </div>
 
-  <div>
-    <%= form.label :description %><br>
-    <%= form.text_area :description %>
-  </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
+</div>
+
+<%= javascript_tag do %>
+
+// toggle start at time
+document.getElementById('toggle_start_at_time').onclick = function() {
+
+  var hour   = document.getElementById('event[start_at_hour]');
+  var minute = document.getElementById('event[start_at_minute]');
+  var startAtTimeInput = document.getElementById('start_at_time_input');
+  var toggleBtn = document.getElementById('toggle_start_at_time');
+
+  if (hour.hasAttribute('name')) {
+    hour.removeAttribute('name');
+    minute.removeAttribute('name');
+    startAtTimeInput.style.display = 'none';
+    toggleBtn.innerHTML = "Activer un horaire";
+  } else {
+    hour.setAttribute('name', 'event[start_at_hour]');
+    minute.setAttribute('name', 'event[start_at_minute]');
+    startAtTimeInput.style.display = '';
+    toggleBtn.innerHTML = "Désactiver l'horaire";
+  }
+};
+
 <% end %>
