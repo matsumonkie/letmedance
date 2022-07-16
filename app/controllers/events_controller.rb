@@ -63,7 +63,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
-    @event.deleted_at(Time.now)
+    @event.deleted_at = Time.now
     @event.save
 
     redirect_to root_path, status: :see_other
