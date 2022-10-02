@@ -3,7 +3,12 @@
     <h1> <%= link_to "New event", new_event_path %> </h1>
   <% end %>
 
-  <h1 class="font-bold text-4xl">Évènements à venir</h1>
+  <div class="flex flex-col max-w-4xl mx-auto h-auto">
+    <div class="space-y-2 pt-6 pb-8 md:space-y-5">
+      <h1 class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 text-center">Soirées à venir</h1>
+      <p class="text-lg leading-7 text-gray-500 dark:text-gray-400 text-center">Vos prochaines soirées et évènements à venir</p>
+    </div>
+  </div>
 
   <div class="w-full flex">
 
@@ -11,17 +16,17 @@
 
       <% @events_by_date.each do |start_at_date, events, index| %>
 
-        <div class="border-gray-400 flex flex-col mb-2 bg-white rounded-lg shadow">
+        <div class="flex flex-col mb-2">
 
           <!-- day of the week -->
-          <div class="px-4 py-5 sm:px-6 border-b w-full">
+          <div class="px-4 py-5 sm:px-6 w-full">
             <h3 class="text-lg leading-6 font-medium text-gray-900">
               <%= t('date.day_names')[start_at_date.days_to_week_start].capitalize %> <%= l start_at_date, format: :short %>
             </h3>
           </div>
 
           <!-- event list -->
-          <ul class="flex flex-col w-full">
+          <ul class="flex flex-col w-full border-gray-400 bg-white rounded-lg shadow">
 
             <% events.each do |event| %>
 
