@@ -1,9 +1,11 @@
 # Load DSL and set up stages
 require "capistrano/setup"
 
+
 # Include default deployment tasks
 require "capistrano/deploy"
 
+require "capistrano/rails"
 # Load the SCM plugin appropriate to your project:
 #
 # require "capistrano/scm/hg"
