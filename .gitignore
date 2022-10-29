@@ -37,3 +37,8 @@ tmp/
 .emacs*
 .emacs*
 db/schema.rb
+
+dist/
+node_modules/
+vendor/
+.emacs*
