@@ -61,6 +61,7 @@ group :development do
   gem "web-console"
   gem "capistrano", "~> 3.17", require: false
   gem "capistrano-rails", "~> 1.6", require: false
+  gem 'capistrano3-puma'
   gem 'ed25519', '>= 1.2', '< 2.0'
   gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
