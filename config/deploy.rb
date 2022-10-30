@@ -13,6 +13,8 @@ set :keep_releases, 5
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/iori/letmedance"
 
+set :puma_service_unit_name, :puma_letmedance
+
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
