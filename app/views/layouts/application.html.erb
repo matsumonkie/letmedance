@@ -19,20 +19,11 @@
   <body class="w-screen h-screen">
 
       <!-- HEADER -->
-      <header class="max-w-4xl mx-auto pt-5 md:py-10 md:grid md:grid-cols-12 md:gap-4">
-
+      <header class="max-w-4xl mx-auto pt-5 grid place-items-center md:py-5">
         <!-- LOGO -->
-        <div class="h-full md:col-start-1 md:col-span-6" href="/">
+        <a class="h-full" href="/">
           <%= image_tag('logo.png', class: "mx-auto md:m-0 h-40") %>
-        </div>
-
-        <!-- DESKTOP MENU -->
-        <div class="md:col-start-7 md:col-span-6">
-          <div class="flex h-full justify-center md:justify-end md:items-center md:content-center">
-            <a class="font-medium text-gray-900 mx-2" href="/projects">Soirées</a>
-            <a class="font-medium text-gray-900 mx-2" href="/about">À Propos</a>
-          </div>
-        </div>
+        </a>
       </header>
 
     <%= yield %>
