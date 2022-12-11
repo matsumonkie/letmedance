@@ -7,33 +7,16 @@
       Créer un évènement
     </div>
 
-    <%= render partial: 'new_edit_form', locals: { event: @event, submit_button_text: 'Créer' } %>
+    <% if @start_at_time %>
+      <%= link_to "New event", new_new_event_path %> </h1>
+    <% else %>
+      <%= link_to "New event with time", new_new_event_path(start_at_time: true) %> </h1>
+    <% end %>
+
+    <%= render partial: 'new_edit_form', locals: {
+        event: @event,
+        start_at_time: @start_at_time,
+        submit_button_text: 'Créer'
+        } %>
   </div>
-
-
 </div>
-
-<%= javascript_tag do %>
-
-// toggle start at time
-document.getElementById('toggle_start_at_time').onclick = function() {
-
-  var hour   = document.getElementById('event[start_at_hour]');
-  var minute = document.getElementById('event[start_at_minute]');
-  var startAtTimeInput = document.getElementById('start_at_time_input');
-  var toggleBtn = document.getElementById('toggle_start_at_time');
-
-  if (hour.hasAttribute('name')) {
-    hour.removeAttribute('name');
-    minute.removeAttribute('name');
-    startAtTimeInput.style.display = 'none';
-    toggleBtn.innerHTML = "Activer un horaire";
-  } else {
-    hour.setAttribute('name', 'event[start_at_hour]');
-    minute.setAttribute('name', 'event[start_at_minute]');
-    startAtTimeInput.style.display = '';
-    toggleBtn.innerHTML = "Désactiver l'horaire";
-  }
-};
-
-<% end %>

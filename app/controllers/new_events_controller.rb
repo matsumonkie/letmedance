@@ -3,7 +3,8 @@ class NewEventsController < ApplicationController
   before_action :return_404_if_not_super_admin, only: [:new, :create]
 
   def new
-    @event = NewEvent.new
+    @start_at_time = params.has_key?(:start_at_time)
+    @event = NewEvent.new()
   end
 
   def create
@@ -14,18 +15,18 @@ class NewEventsController < ApplicationController
     minute = event_params['start_at_minute']
     start_at_time =
       if hour && minute
-        "#{hour.to_i}:#{minute}.to_i"
+        "#{hour.to_i}:#{minute}"
       else
         nil
       end
 
     @event = NewEvent.new(title: event_params[:title],
-                       description: event_params[:description],
-                       start_at_date: start_at_date,
-                       start_at_time: start_at_time,
-                       location_name: event_params[:location_name],
-                       address: event_params[:address],
-                      )
+                          description: event_params[:description],
+                          start_at_date: start_at_date,
+                          start_at_time: start_at_time,
+                          location_name: event_params[:location_name],
+                          address: event_params[:address],
+                         )
 
     if @event.save
       redirect_to event_path(@event)
