@@ -18,38 +18,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def new
-    @event = Event.new
-  end
-
-  def create
-    start_at_date = Date.new(event_params["start_at_date(1i)"].to_i,
-                             event_params["start_at_date(2i)"].to_i,
-                             event_params["start_at_date(3i)"].to_i)
-    hour = event_params['start_at_hour']
-    minute = event_params['start_at_minute']
-    start_at_time =
-      if hour && minute
-        "#{hour.to_i}:#{minute}.to_i"
-      else
-        nil
-      end
-
-    @event = Event.new(title: event_params[:title],
-                       description: event_params[:description],
-                       start_at_date: start_at_date,
-                       start_at_time: start_at_time,
-                       location_name: event_params[:location_name],
-                       address: event_params[:address],
-                      )
-
-    if @event.save
-      redirect_to @event
-    else
-      render :new, status: :unprocessable_entity
-    end
-  end
-
   def edit
     @event = Event.find(params[:id])
   end

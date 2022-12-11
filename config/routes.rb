@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root "events#index"
 
-  resources :events, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :new_events, only: [:new, :create]
+  resources :events, only: [:index, :show, :edit, :update, :destroy]
 
   # sessions
   post "login", to: "sessions#create"
