@@ -64,6 +64,9 @@ group :development do
   gem 'capistrano3-puma'
   gem 'ed25519', '>= 1.2', '< 2.0'
   gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
+
+  # rdoc gem as well as install libyaml-devel lib are necessary to use 'rails console'
+  gem "rdoc", require: false
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
