@@ -9,7 +9,10 @@ class EventsController < ApplicationController
     @days_of_week = (@beginning_of_week..@end_of_week).to_a
 
     @ungrouped_events = Event
-                          .where(start_at_date: @beginning_of_week..@end_of_week, deleted_at: nil)
+                          .where(start_at_date: @beginning_of_week..@end_of_week,
+                                 deleted_at: nil,
+                                 is_template: false,
+                                )
                           .order(:start_at_date, :start_at_time)
     @events_by_date = @ungrouped_events.group_by(&:start_at_date)
   end

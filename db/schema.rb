@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_14_183350) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_18_180829) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_14_183350) do
     t.date "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_template", null: false
     t.index ["deleted_at"], name: "index_events_on_deleted_at"
     t.index ["start_at_date"], name: "index_events_on_start_at_date"
   end

@@ -22,6 +22,7 @@ class NewEventsController < ApplicationController
 
     @event = NewEvent.new(title: event_params[:title],
                           description: event_params[:description],
+                          is_template: event_params[:is_template],
                           start_at_date: start_at_date,
                           start_at_time: start_at_time,
                           location_name: event_params[:location_name],
@@ -44,7 +45,8 @@ class NewEventsController < ApplicationController
                                       'start_at_hour',
                                       'start_at_minute',
                                       'location_name',
-                                      'address')
+                                      'address',
+                                      'is_template')
   end
 
 

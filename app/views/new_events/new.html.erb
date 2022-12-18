@@ -7,16 +7,13 @@
       Créer un évènement
     </div>
 
-    <% if @start_at_time %>
-      <%= link_to "New event", new_new_event_path %> </h1>
-    <% else %>
-      <%= link_to "New event with time", new_new_event_path(start_at_time: true) %> </h1>
-    <% end %>
+    <h1> <%= link_to "New event with time", new_new_event_path(start_at_time: true) %> </h1>
+    <h1> <%= link_to "New event without time", new_new_event_path %> </h1>
 
     <%= render partial: 'new_edit_form', locals: {
         event: @event,
         start_at_time: @start_at_time,
-        submit_button_text: 'Créer'
+        create_button_text: 'Créer',
         } %>
   </div>
 </div>
